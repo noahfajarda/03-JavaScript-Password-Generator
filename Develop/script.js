@@ -8,10 +8,18 @@ var generateBtn = document.querySelector("#generate");
 
 
 // global variables declaration for all possible characters
+
+// look into CharCode
+
 var uppercase = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 var lowercase = uppercase.map(letter => letter.toLowerCase())
 var numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 var special = ['!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~']
+
+
+// function clickIt(){
+//   console.log(document.querySelector("#here").checked)
+// }
 
 // Write password to the #password input
 function writePassword() {
