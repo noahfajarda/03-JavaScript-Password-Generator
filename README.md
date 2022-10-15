@@ -2,7 +2,7 @@
 
 ## Description
 
-This project is an attempt to mimic a portfolio on a webplatform. Most of the items elements used within the HTML of this attempt were semantic elements (i.e. sections, navs, ps) styled with Flexbox and Media Queries. The CSS was constructed using a layout and techniques introduced in previous classes were implemented in order to create a user-friendly site that can adjust to the user's size preferences. The CSS was constructed considering the specification sematic elements and orga the layout organization to find easily accesible elements, minimize repetition, and to compartmentalize similar classes.
+This project is an attempt to create an algorithm to generate a password using user input and display it on the screen. The main portion that was modified was the JavaScript function 'generatePassword()'. The implementation and creation of this function included storing user preferences into variables, appending characters to list of options based on user preferences, and iterating through the range of numbers provided by user to represent the length of characters to generate the password, which is then displayed to the screen. Additional implementation includes non-repeating characters within password through comparison between continuous characters. This project has been refactored to include some other possibilities toward implementation, including objects and CharCode.
 
 ## Screenshot
 
@@ -11,4 +11,4 @@ This project is an attempt to mimic a portfolio on a webplatform. Most of the it
 
 ## Link to Deployed Application
 
-https://noahfajarda.github.io/02-sample-portfolio-web-app/
+https://noahfajarda.github.io/03-JavaScript-Password-Generator/
