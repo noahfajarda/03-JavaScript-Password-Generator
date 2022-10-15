@@ -1,4 +1,4 @@
-# 02-sample-portfolio-web-app
+# 03-JavaScript-Password-Generator
 
 ## Description
 
