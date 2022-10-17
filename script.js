@@ -35,7 +35,11 @@ generateBtn.addEventListener("click", writePassword);
 
 function generatePassword() {
   // prompt() == input() in python, gets **string** user input via browser
-  var passwordLength = prompt("How many characters should the password be?");
+  var passwordLength = prompt("How many characters should the password be? (8-128 Characters)");
+  // validate if length is 8-128
+  while (passwordLength < 8 || passwordLength > 128) {
+    passwordLength = prompt("Invalid character count. How many characters should the password be? (8-128 Characters)")
+  }
 
   // implement an object to make it more efficient
   // state = {
@@ -94,6 +98,27 @@ function generatePassword() {
   // return the generated password
   return userPassword;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
