@@ -66,6 +66,7 @@ var special = [
   "~",
 ];
 
+// store all potential characters to array
 var allChars = [uppercase, lowercase, numbers, special];
 
 // Write password to the #password input
@@ -87,7 +88,7 @@ function getRandomInt(max) {
 generateBtn.addEventListener("click", writePassword);
 
 function generatePassword() {
-  // prompt() == input() in python, gets **string** user input via browser
+  // ask user for char count
   var passwordLength = prompt(
     "How many characters should the password be? (8-128 Characters)"
   );
@@ -98,7 +99,7 @@ function generatePassword() {
     );
   }
 
-  // confirm() == ONLY 'true' or 'false' (**boolean**) response from user via browser
+  // ask user 'yes'/'no' for char sets
   var uppercaseDecision = confirm(
     "Would you like to use uppercase characters?"
   );
@@ -108,6 +109,7 @@ function generatePassword() {
   var numbersDecision = confirm("Would you like to use numbers characters?");
   var specialDecision = confirm("Would you like to use special characters?");
 
+  // if user says 'no' to all, ask again (invalid answer)
   while (
     uppercaseDecision == false &&
     lowercaseDecision == false &&
@@ -124,7 +126,8 @@ function generatePassword() {
     var specialDecision = confirm("Would you like to use special characters?");
   }
 
-  // store all decisions in a list to check with iteration later
+  // store all decisions in an array to check with iteration later
+  // each decision is a true/false boolean
   decisionList = [
     uppercaseDecision,
     lowercaseDecision,
@@ -132,38 +135,28 @@ function generatePassword() {
     specialDecision,
   ];
 
-  // SAMPLE INPUT: length=12, yes no no yes
-
+  // initialize array to add user selected char families
+  // initialize empty password
   var charsToUse = [];
   var password = "";
 
-  if (uppercaseDecision) {
-    charsToUse = charsToUse.concat(uppercase);
-  }
-  if (lowercaseDecision) {
-    charsToUse = charsToUse.concat(lowercase);
-  }
-  if (numbersDecision) {
-    charsToUse = charsToUse.concat(numbers);
-  }
-  if (specialDecision) {
-    charsToUse = charsToUse.concat(special);
-  }
-
-  // chars to use SAMPLE contain: [all uppercase letters, all special chars]
-
-  // lettersLeft: used to increment how many characters we wrote for the password
-  var lettersLeft = passwordLength;
+  // add # of categories to be used
   var categoryCount = 0;
+
+  // add char family if decision is true & increment # of categories
   for (var i = 0; i < 4; i++) {
     if (decisionList[i]) {
+      charsToUse = charsToUse.concat(allChars[i]);
       categoryCount++;
     }
   }
 
+  // set lettersLeft to passwordLength
+  // decrement random values from lettersLeft based on TRUE decisions for families
+  var lettersLeft = passwordLength;
+
   // character count per category (lower, upper, num, special)
   var numberOfCharsPerCategory = [0, 0, 0, 0];
-  console.log(lettersLeft);
 
   // get random number for each category selected (should all add up to length)
   var charsList = [];
