@@ -185,32 +185,36 @@ function generatePassword() {
       numberOfCharsPerCategory[i] = charsList.pop();
     }
   }
+  console.log(charsToUse);
+
+  // make 2D array
+  var charsToUse = [];
+
+  if (uppercaseDecision) {
+    charsToUse.push(uppercase);
+  }
+  if (lowercaseDecision) {
+    charsToUse.push(lowercase);
+  }
+  if (numbersDecision) {
+    charsToUse.push(numbers);
+  }
+  if (specialDecision) {
+    charsToUse.push(special);
+  }
+
+  // charsToUse == all acceptable characters used in pass as 2D array
+  // numberOfCharsPerCategory = how many chars each category should have in pass
+  // password == "" (add to it)
 
   console.log(charsToUse);
+  console.log(numberOfCharsPerCategory);
+  console.log(password);
+
   for (var i = 0; i < numberOfCharsPerCategory.length; i++) {
     for (var j = 0; j < numberOfCharsPerCategory[i]; j++) {
       password += allChars[i][getRandomInt(allChars[i].length)];
     }
-    //     var chooseCategory = getRandomInt(categoryCount);
-    //     while (numberOfCharsPerCategory[chooseCategory] == 0) {
-    //         chooseCategory = getRandomInt(categoryCount);
-    //     }
-
-    //     if (chooseCategory == 0) {
-    //         password += uppercase[getRandomInt(0, uppercase.length)];
-    //     }
-    //     if (chooseCategory == 1) {
-    //         password += lowercase[getRandomInt(0, lowercase.length)];
-    //     }
-    //     if (chooseCategory == 2) {
-    //         password += numbers[getRandomInt(0, numbers.length)];
-    //     }
-    //     if (chooseCategory == 3) {
-    //         password += special[getRandomInt(0, special.length)];
-    //     }
-
-    //     numberOfCharsPerCategory[chooseCategory] -= 1;
-    //     console.log(password);
   }
 
   // scramble password
@@ -225,3 +229,8 @@ function generatePassword() {
 
   return password;
 }
+
+// tutoring session questions and notes:
+// first: go over entire code to explain what is going on
+// ask: why is the distribution so skewed
+// why is it giving 0 for some of the values?
