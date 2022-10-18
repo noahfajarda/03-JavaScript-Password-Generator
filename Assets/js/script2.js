@@ -61,10 +61,19 @@ function generatePassword() {
   var numbersDecision = confirm("Would you like to use numbers characters?");
   var specialDecision = confirm("Would you like to use special characters?");
 
+  while (uppercaseDecision == false && uppercaseDecision == false && uppercaseDecision == false && uppercaseDecision == false) {
+    var uppercaseDecision = confirm("At least one option must be selected to generate a password!! Would you like to use uppercase characters?");
+    var lowercaseDecision = confirm("Would you like to use lowercase characters?");
+    var numbersDecision = confirm("Would you like to use numbers characters?");
+    var specialDecision = confirm("Would you like to use special characters?");
+  }
+
   var decisions = [uppercaseDecision, lowercaseDecision, numbersDecision, specialDecision];
+  var verifyDecisions = [false, false, false, false];
   var possibleChars = [uppercase, lowercase, numbers, special];
   // list for all inclusive characters for user password:
   var acceptableChars = [];
+  var verifyChars = [];
 
   // ex user values: 12   true   false    true    true
 
@@ -74,11 +83,15 @@ function generatePassword() {
       // concat() == combine two lists together
       // DON'T USE PUSH() B/C IT'LL BE A 2D LIST, WHERE THE VALUE YOU'RE PUSHING IS THE 1ST INDEX
       acceptableChars = acceptableChars.concat(possibleChars[i]);
+      verifyChars.push(possibleChars[i]);
+    } else {
+      verifyChars.push("");
     }
   }
 
   // acceptableChars will contain all acceptable characters
   console.log(acceptableChars)
+  
   var userPassword = "";
 
   checkLast = 0;
@@ -92,7 +105,17 @@ function generatePassword() {
     checkLast = random;
     // append character to password
     userPassword = userPassword.concat(acceptableChars[random]);
+
+
+
+    for (let i = 0; i < verifyChars.length; i++) {
+      if (verifyChars[i].includes(acceptableChars[random])) {
+        verifyDecisions[i] = true;
+      }
+    }
+
   }
+  console.log(verifyDecisions);
   console.log(userPassword);
   
   // return the generated password
