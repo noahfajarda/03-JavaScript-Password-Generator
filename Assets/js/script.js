@@ -79,9 +79,10 @@ function writePassword() {
 
 // get random Int between 2 digits
 // used from: https://stackoverflow.com/questions/1527803/generating-random-whole-numbers-in-javascript-in-a-specific-range
-function getRandomInt(max) {
+function getRandomChar(arr) {
   // ~~ == math.floor
-  return ~~(Math.random() * max);
+  var index = Math.floor(Math.random() * arr.length);
+  return arr[index];
 }
 
 // Add event listener to generate button
@@ -126,104 +127,36 @@ function generatePassword() {
     var specialDecision = confirm("Would you like to use special characters?");
   }
 
-  // store all decisions in an array to check with iteration later
-  // each decision is a true/false boolean
-  decisionList = [
-    uppercaseDecision,
-    lowercaseDecision,
-    numbersDecision,
-    specialDecision,
-  ];
-
   // initialize array to add user selected char families
   // initialize empty password
   var charsToUse = [];
   var password = "";
 
-  // add # of categories to be used
-  var categoryCount = 0;
-
-  // add char family if decision is true & increment # of categories
-  for (var i = 0; i < 4; i++) {
-    if (decisionList[i]) {
-      charsToUse = charsToUse.concat(allChars[i]);
-      categoryCount++;
-    }
-  }
-
-  // set lettersLeft to passwordLength
-  // decrement random values from lettersLeft based on TRUE decisions for families
-  var lettersLeft = passwordLength;
-
-  // character count per category (lower, upper, num, special)
-  var numberOfCharsPerCategory = [0, 0, 0, 0];
-
-  // get random number for each category selected (should all add up to length)
-  var charsList = [];
-  for (var i = 0; i < categoryCount; i++) {
-    if (i == categoryCount - 1) {
-      var numberOfCharsForThisItem = lettersLeft;
-      charsList.push(numberOfCharsForThisItem);
-      lettersLeft = 0;
-      break;
-    }
-    var numberOfCharsForThisItem = getRandomInt(lettersLeft / categoryCount);
-    charsList.push(numberOfCharsForThisItem);
-    lettersLeft -= numberOfCharsForThisItem;
-  }
-
-  // place each number to corresponding category depending on if each condition is true
-  for (var i = 0; i < 4; i++) {
-    if (decisionList[i]) {
-      numberOfCharsPerCategory[i] = charsList.pop();
-    }
-  }
-  console.log(charsToUse);
-
-  // make 2D array
-  var charsToUse = [];
+  // add categories based on user's decisions
 
   if (uppercaseDecision) {
-    charsToUse.push(uppercase);
+    charsToUse = charsToUse.concat(uppercase);
+    password += getRandomChar(uppercase);
   }
   if (lowercaseDecision) {
-    charsToUse.push(lowercase);
+    charsToUse = charsToUse.concat(lowercase);
+    password += getRandomChar(lowercase);
   }
   if (numbersDecision) {
-    charsToUse.push(numbers);
+    charsToUse = charsToUse.concat(numbers);
+    password += getRandomChar(numbers);
   }
   if (specialDecision) {
-    charsToUse.push(special);
+    charsToUse = charsToUse.concat(special);
+    password += getRandomChar(special);
   }
 
-  // charsToUse == all acceptable characters used in pass as 2D array
-  // numberOfCharsPerCategory = how many chars each category should have in pass
-  // password == "" (add to it)
+  var remaining = passwordLength - password.length;
 
-  console.log(charsToUse);
-  console.log(numberOfCharsPerCategory);
-  console.log(password);
-
-  for (var i = 0; i < numberOfCharsPerCategory.length; i++) {
-    for (var j = 0; j < numberOfCharsPerCategory[i]; j++) {
-      password += allChars[i][getRandomInt(allChars[i].length)];
-    }
+  // add char family if decision is true & increment # of categories
+  for (var i = 0; i < remaining; i++) {
+    password += getRandomChar(charsToUse);
   }
-
-  // scramble password
-  password = password
-    .split("")
-    .sort(function () {
-      //tell sort function to randomly return a + or - number 50/50
-      return Math.random() - 0.5;
-    })
-    .join("");
-  password;
 
   return password;
 }
-
-// tutoring session questions and notes:
-// first: go over entire code to explain what is going on
-// ask: why is the distribution so skewed
-// why is it giving 0 for some of the values?
