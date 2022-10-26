@@ -1,8 +1,8 @@
-# 03-JavaScript-Password-Generator
+# 03-Code-Quiz-App
 
 ## Description
 
-This project is an attempt to create an algorithm to generate a password using user input and display it on the screen. The main portion that was modified was the JavaScript function 'generatePassword()'. The implementation and creation of this function included storing user preferences into variables, appending characters to list of options based on user preferences, and iterating through the range of numbers provided by user to represent the length of characters to generate the password, which is then displayed to the screen. Additional implementation includes non-repeating characters within password through comparison between continuous characters. This project has been refactored to include some other possibilities toward implementation, including objects and CharCode.
+This project is an attempt to create a code quiz application where a user can answer questions within a quiz and receive, store, and retrieve their store. This application utilized various techniques used within web-apis, such as selecting, targeting, and dynamically modifying elements and utilizing local storage to retrieve and store data. This application iterates through a series of questions in which the user must select a provided answer. The user's selection will reflect whether or not time should be subtracted from a timer that is constantly ticking down as the user takes the quiz. Once the user is finished with the quiz, their score will match the timer and they have the option to store it in local storage which can be accessed while the user remains in the current session.
 
 ## Screenshot
 
